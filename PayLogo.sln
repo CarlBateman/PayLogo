@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PayLogo", ".", "{D2E8102C-91D7-4CF5-8E64-AE5D0B890076}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54313"
+		Debug.AspNetCompiler.PhysicalPath = "..\PayLogo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54313\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54313"
+		Release.AspNetCompiler.PhysicalPath = "..\PayLogo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54313\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54313"
+		SlnRelativePath = "..\PayLogo\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2E8102C-91D7-4CF5-8E64-AE5D0B890076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E8102C-91D7-4CF5-8E64-AE5D0B890076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D2123A0-F3E1-46F1-A4EF-03751FE2EC0A}
+	EndGlobalSection
+EndGlobal
