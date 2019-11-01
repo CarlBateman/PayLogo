@@ -6,31 +6,17 @@
   insertStyle(mydir + "css/wgl-widget.css");
   insertStyle(mydir + "css/modal.css");
 
-
-
-  Promise.resolve()
-    .then(loadCommon)
+  loadCommon()
     .then(() => { insertHTML(); })
-    //.then(insertHTML)
-    .then(() => { })
-    ;
-
-  //loadCommon()
-  //  .then(() => { insertHTML(); });
-
-  //insertHTML();
-  //insertScript(mydir + "common.js");
-  insertScript(mydir + "m3s-babylon.js");
-
-  loadBabylon()
+    .then(() => { insertScript(mydir + "m3s-babylon.js"); })
+    .then(loadBabylon)
     .then(loadExtensions)
     .then(() => { doWidgetBabylon(mydir); });
 
-  function isCommonLoaded() { return typeof setRandom !== "undefined"; }
-  function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
-  function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
   function loadCommon() {
+    function isCommonLoaded() { return typeof setRandom !== "undefined"; }
+
     return new Promise((resolve, reject) => {
       insertScript(mydir + "common.js");
       waitForPromise(resolve, reject, isCommonLoaded);
@@ -38,6 +24,8 @@
   }
 
   function loadBabylon() {
+    function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
+
     return new Promise((resolve, reject) => {
       insertScript('https://cdn.babylonjs.com/babylon.max.js');
       waitForPromise(resolve, reject, isBabylonLoaded);
@@ -46,6 +34,8 @@
 
   function loadExtensions() {
     insertScript('https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js');
+
+    function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
     return new Promise((resolve, reject) => {
       insertScript('https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js');
@@ -81,6 +71,4 @@
     s.setAttribute('rel', "stylesheet");
     document.head.appendChild(s);
   }
-
-
 });
