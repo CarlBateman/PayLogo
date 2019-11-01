@@ -10,60 +10,18 @@
   insertScript(mydir + "common.js");
   insertScript(mydir + "m3s-babylon.js");
 
-  function run() { doWidgetBabylon(mydir); }
+  loadBabylon();
 
-  //loadBabylonPromise()
-  //  .then(() => { waitFor(isBabylonLoaded); })
-  //  .then(loadExtensions)
-  //  .then(run);
-
-  loadBabylon()
-    .then(loadExtensions)
-    .then(run);
-
-  function isCommonLoaded() { return typeof setRandom !== "undefined"; }
   function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
   function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
-  function loadBabylonPromise() {
-    return new Promise((resolve, reject) => {
-      insertScript('https://cdn.babylonjs.com/babylon.max.js');
-      resolve();
-    });
-  }
-
-  function loadBabylon() {
-    return new Promise((resolve, reject) => {
-      insertScript('https://cdn.babylonjs.com/babylon.max.js');
-      waitForPromise(resolve, reject, isBabylonLoaded);
-    });
-  }
-
-  function loadExtensions() {
-    insertScript('https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js');
-
-    return new Promise((resolve, reject) => {
-      insertScript('https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js');
-      waitForPromise(resolve, reject, isLoaderAvailable);
-    });
-  }
-
-  function waitFor(condition) {
-    var wait = 0;
-
-    return new Promise((resolve, reject) => {
-      (function waitForLocal(condition) {
-        wait += 10;
-        if (wait > 100000) reject();
-
-        setTimeout(function () {
-          if (condition())
-            resolve();
-          else
-            waitForLocal(condition);
-        }, 10);
-      })(condition);
-    });
+  function waitFor(condition, callback) {
+    setTimeout(function () {
+      if (condition())
+        callback();
+      else
+        waitFor(condition, callback);
+    }, 10);
   }
 
   function insertScript(script) {
@@ -72,20 +30,18 @@
     document.head.appendChild(s);
   }
 
-  function waitForPromise(resolve, reject, condition) {
-    var wait = 0;
+  function loadBabylon() {
+    insertScript('https://cdn.babylonjs.com/babylon.max.js');
 
-    (function waitFor(condition) {
-      wait += 10;
-      if (wait > 100000) reject();
+    waitFor(isBabylonLoaded, loadExtensions);
+  }
 
-      setTimeout(function () {
-        if (condition())
-          resolve();
-        else
-          waitFor(condition);
-      }, 10);
-    })(condition);
+  function loadExtensions() {
+    insertScript('https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js');
+
+    insertScript('https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js');
+
+    waitFor(isLoaderAvailable, () => { doWidgetBabylon(mydir);});
   }
 
   function insertStyle(style) {
@@ -161,5 +117,4 @@
 
     document.getElementById("LogoGenerator").appendChild(section);
   }
-
 });

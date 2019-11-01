@@ -1,6 +1,6 @@
 ﻿let download;
 
-function doWidgetBabylon() {
+function doWidgetBabylon(mydir) {
   var canvas = document.getElementById("m3s-wgl-renderCanvas");
   var engine = new BABYLON.Engine(canvas, true);
   var radius = [];
