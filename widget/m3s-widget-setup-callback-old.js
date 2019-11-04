@@ -6,7 +6,7 @@
   insertStyle(mydir + "css/wgl-widget.css");
   insertStyle(mydir + "css/modal.css");
 
-  insertScript(mydir + "m3s-babylon.js");
+  insertScript(mydir + "m3s-widget-babylon.js");
 
   loadCommon();
 

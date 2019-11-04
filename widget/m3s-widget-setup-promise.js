@@ -8,7 +8,7 @@
 
   loadCommon()
     .then(() => { insertHTML(); })
-    .then(() => { insertScript(mydir + "m3s-babylon.js"); })
+    .then(() => { insertScript(mydir + "m3s-widget-babylon.js"); })
     .then(loadBabylon)
     .then(loadExtensions)
     .then(() => { doWidgetBabylon(mydir); });

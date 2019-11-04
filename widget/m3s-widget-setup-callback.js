@@ -12,7 +12,7 @@
 
   let dependencies = {
     scripts: [
-      { script: mydir + "m3s-babylon.js" },
+      { script: mydir + "m3s-widget-babylon.js" },
       { script: mydir + "common.js", condition: isCommonLoaded },
       { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded },
       { script: 'https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js' },
@@ -37,12 +37,22 @@
   }
 
   function waitFor(condition, callback) {
-    setTimeout(function () {
-      if (condition())
-        callback();
-      else
-        waitFor(condition, callback);
-    }, 10);
+    let guard = Date.now() + 10000;
+
+    function wait() {
+      if (Date.now() > guard) {
+        console.log("time out");
+        return;
+      }
+      setTimeout(function () {
+        if (condition())
+          callback();
+        else
+          wait(condition, callback);
+      }, 10);
+    }
+
+    wait();
   }
 
   function insertScript(script) {
