@@ -18,7 +18,7 @@
     function isCommonLoaded() { return typeof setRandom !== "undefined"; }
 
     return new Promise((resolve, reject) => {
-      insertScript(mydir + "common.js");
+      insertScript(mydir + "m3s-common.js");
       waitForPromise(resolve, reject, isCommonLoaded);
     });
   }

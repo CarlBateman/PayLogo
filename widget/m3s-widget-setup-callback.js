@@ -6,49 +6,59 @@
   insertStyle(mydir + "css/wgl-widget.css");
   insertStyle(mydir + "css/modal.css");
 
-  function isCommonLoaded() { return typeof setRandom !== "undefined"; }
+  function isCommonLoaded() { return typeof m3sCommon !== "undefined"; }
   function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
   function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
+  // blocking
+  // continue and fix later
+
   let dependencies = {
     scripts: [
-      { script: mydir + "m3s-widget-babylon.js" },
-      { script: mydir + "common.js", condition: isCommonLoaded },
-      { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded },
-      { script: 'https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js' },
-      { script: 'https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js', condition: isLoaderAvailable }
+      { script: mydir + "m3s-widget-babylon.js", critical: true },
+      { script: mydir + "m3s-common.js", condition: isCommonLoaded, critical: true },
+      { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded, critical: true },
+      { script: 'https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js', critical: false },
+      { script: 'https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js', condition: isLoaderAvailable, critical: false }
     ],
-    callback: () => { insertHTML(); doWidgetBabylon(mydir); }
+    callback: () => { m3sWidgetBabylon.run(mydir); }
   };
 
-  loadDependencies(dependencies);
-
-  function loadDependencies(dependencies) {
+  (function loadDependencies(dependencies) {
     if (dependencies.scripts.length > 0) {
-      let dep = dependencies.scripts.shift();
-      insertScript(dep.script);
-      if (typeof dep.condition === "undefined") 
+      let dependency = dependencies.scripts.shift();
+
+      insertScript(dependency.script);
+
+      if (typeof dependency.condition === "undefined") 
         loadDependencies(dependencies);
       else
-        waitFor(dep.condition, () => { loadDependencies(dependencies); });
+        waitFor(dependency, () => { loadDependencies(dependencies); });
     } else {
       dependencies.callback();
     }
-  }
+  })(dependencies);
 
-  function waitFor(condition, callback) {
-    let guard = Date.now() + 10000;
+  function waitFor(dependency, callback) {
+    let guard = Date.now() + 5000;
 
     function wait() {
       if (Date.now() > guard) {
-        console.log("time out");
+        if (dependency.critical) {
+          let msg = "Critical time out on " + dependency.script + " unable to proceed.";
+          console.error(msg);
+        } else {
+          let msg = "%cNon-critical %ctime out on " + dependency.script + " continuing.";
+          console.log(msg, "color: red; font-weight: bold;", "color: darkblue;" );
+          callback();
+        }
         return;
       }
       setTimeout(function () {
-        if (condition())
+        if (dependency.condition())
           callback();
         else
-          wait(condition, callback);
+          wait(dependency.condition, callback);
       }, 10);
     }
 
@@ -57,7 +67,10 @@
 
   function insertScript(script) {
     var s = document.createElement('script');
-    s.setAttribute('src', script);
+    //console.log("Loading: ", script);
+    //s.onload = () => { console.log("Loaded: ", s.src); };
+    s.onerror = () => { console.error("Unable to load: ", s.src); };
+    s.src = script;
     document.head.appendChild(s);
   }
 

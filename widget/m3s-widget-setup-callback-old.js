@@ -28,7 +28,7 @@
   function loadCommon() {
     function isCommonLoaded() { return typeof setRandom !== "undefined"; }
 
-    insertScript(mydir + "common.js");
+    insertScript(mydir + "m3s-common.js");
 
     waitFor(isCommonLoaded, () => { insertHTML(); loadBabylon(); });
   }
@@ -48,7 +48,7 @@
 
     insertScript('https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js');
 
-    waitFor(isLoaderAvailable, () => { doWidgetBabylon(mydir);});
+    waitFor(isLoaderAvailable, () => { m3sWidgetBabylon.run(mydir);});
   }
 
   function insertStyle(style) {
