@@ -63,4 +63,6 @@
 #*.RTF   diff=astextplain
 
 
+site* linguist-vendored
 site-* linguist-vendored
+site-space/* linguist-vendored
