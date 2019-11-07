@@ -62,7 +62,7 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 
-site-space/* linguist-vendored
 site-directive/* linguist-vendored
 site-striped/* linguist-vendored
 site-twenty/* linguist-vendored
+site-space/* linguist-vendored
