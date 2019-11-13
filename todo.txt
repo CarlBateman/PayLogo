@@ -1,15 +1,11 @@
-﻿CSS Grid
+﻿
+CSS Grid
 
 Button style
 	Allow style over-ride
 	Needs options
 
-Controls
-	Reasonable defaults
-	Colour (light)
-	Offset
-	Flip
-	Others?
-
 Three.js
 PlayCanvas
+
+Zoom step

@@ -112,8 +112,13 @@
               <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
               <input type="range" min="0" max="4" step="0.01" value="1" class="m3s-slider" id="brightness">
             </div>
-
+            <div class="m3s-wgl-ui-cell">
+              <label class="m3s-wgl-ui-label" for="offset">Number</label>
+              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+              <input type="range" min="2" max="15" step="1" value="7" class="m3s-slider" id="number">
+            </div>
             <div class="m3s-wgl-ui-cell"></div>
+
           </div>
 
           <div class="m3s-wgl-ui-footer">

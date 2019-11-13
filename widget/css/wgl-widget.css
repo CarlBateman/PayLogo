@@ -60,7 +60,7 @@
 .m3s-wgl-ui-mainbody {
   margin-top: 0;
   min-height: 150px;
-  height: 50%;
+  height: 75%;
   overflow: hidden;
   display: flex;
   flex-direction: column;

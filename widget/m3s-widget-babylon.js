@@ -17,7 +17,8 @@
 
     const options = {
       shouldExportNode: function (node) {
-        return node !== bar;
+        //console.log(node.name, node.visibility);
+        return node.visibility;
       }
     };
 
@@ -35,6 +36,7 @@
     const bars = [];
     const flip = [];
     const offset = [];
+    const origins = [];
     let material;
     let light1;
 
@@ -45,16 +47,14 @@
       if (BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb")) {
         BABYLON.SceneLoader.ImportMesh("", "", mydir + "model/bend.glb", scene, function (newMeshes) {
           material = new BABYLON.StandardMaterial("material", scene);
-          material.diffuseColor = new BABYLON.Color3(1, 0, 1);
+          let rgb = m3sCommon.hslToRgb(0.5, 0.5, 0.5);
+
+          material.diffuseColor = new BABYLON.Color3(rgb[0], rgb[1], rgb[2]);
           material.backFaceCulling = false;
 
           newMeshes[1].visibility = false;
           bar = newMeshes[1];
           bar.material = material;
-
-          //bar2 = BABYLON.MeshBuilder.CreateBox("box", { height: 3.35, width: .5, depth: .5 }, scene);
-          //bar2.parent = bar;
-          //bar2.rotation.x = Math.PI / 2;
 
           setup();
         }, null, addBar);
@@ -67,7 +67,9 @@
         bar = BABYLON.MeshBuilder.CreateBox("box", { height: 3.35, width:.5, depth:.5 }, scene);
         bar.visibility = false;
         material = new BABYLON.StandardMaterial("material", scene);
-        material.diffuseColor = new BABYLON.Color3(1, 0, 1);
+        let rgb = m3sCommon.hslToRgb(0.5, 0.5, 0.5);
+
+        material.diffuseColor = new BABYLON.Color3(rgb[0], rgb[1], rgb[2]);
         bar.material = material;
 
         setup();
@@ -79,9 +81,12 @@
       light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-100, 0, -100), scene);
       light1.intensity = 1;
 
+      let numBars = 30;
+      let step = 7;
       function setup() {
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < numBars; i++) {
           const origin = new BABYLON.Mesh("origin", scene);
+          origins.push(origin);
 
           const offset1 = new BABYLON.Mesh("offset", scene);
           offset1.parent = origin;
@@ -97,38 +102,72 @@
 
           const bar1 = new BABYLON.Mesh("bar", scene);
           bar1.setParent(spin1);
-          bars.push(bar1);
+          //bars.push(bar1);
 
           const flip1 = new BABYLON.Mesh("flip", scene);
           flip1.setParent(bar1);
           flip.push(flip1);
 
-          origin.rotation.z = i * (2 * Math.PI) / 7;
+          origin.rotation.z = Math.ceil(i/2) * (2 *Math.PI) / step;
           origin.rotation.z += Math.PI / 2;
 
           offset1.position.x = 2;
 
           radius1.position.x = 0;
 
-          if (i > 7) {
+          if (i % 2) {
             offset1.rotation.z = Math.PI;
             origin.position.z = -.5;
             spin1.rotation.z = - Math.PI / 2;
           }
 
           const box = bar.clone();
+          box.name = "box" + i;
           box.setParent(flip1);
           bar1.rotate(BABYLON.Axis.Z, Math.PI / 8, BABYLON.Space.WORLD);
           bar1.rotate(BABYLON.Axis.Y, -Math.PI / 3, BABYLON.Space.WORLD);
 
-          box.visibility = true;
-          box.name = "bar";
+          if (i < step*2)
+            box.visibility = true;
+
           bars.push(box);
         }
       }
     };
 
     createScene();
+
+    const numberSlider = document.getElementById("number");
+    numberSlider.oninput = function () {
+      let n = numberSlider.value * 2;
+      let step = numberSlider.value;
+      let i = 0;
+      for (; i < origins.length; i++) {
+        origins[i].rotation.z = Math.ceil(i / 2) * (2 * Math.PI) / step;
+        origins[i].rotation.z += Math.PI / 2;
+      }
+
+      for (i = 0; i < n; i++) {
+        bars[i].visibility = true;
+        origins[i].visibility = true;
+        radius[i].visibility = true;
+        spin[i].visibility = true;
+        bars[i].visibility = true;
+        flip[i].visibility = true;
+        offset[i].visibility = true;
+      }
+      for (; i < bars.length; i++) {
+        bars[i].visibility = false;
+        origins[i].visibility = false;
+        radius[i].visibility = false;
+        spin[i].visibility = false;
+        bars[i].visibility = false;
+        flip[i].visibility = false;
+        offset[i].visibility = false;
+      }
+    };
+
+
 
     const hueSlider = document.getElementById("hue");
     hueSlider.oninput = function () {
@@ -165,11 +204,11 @@
 
     spinSlider.oninput = function () {
       let i = 0;
-      for (; i < spin.length / 2; i++) {
-        spin[i].rotation.z = spinSlider.value;
-      }
       for (; i < spin.length; i++) {
-        spin[i].rotation.z = .5 * spinSlider.value - Math.PI / 2;
+        if (i % 2)
+          spin[i].rotation.z = .5 * spinSlider.value - Math.PI / 2;
+        else
+          spin[i].rotation.z = spinSlider.value;
       }
     };
 
