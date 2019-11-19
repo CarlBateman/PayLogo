@@ -2,7 +2,53 @@
   let scene;
   let bar;
 
-  const download = function () { };
+  const download = function () {
+    if (typeof THREE.GLTFExporter === "undefined") {
+      alert("Sorry, the download component can't be found.\nUnable to donwload!");
+      return;
+    }
+    const modal = document.getElementById("myModal");
+
+    let fileName = document.getElementById("m3s-wgl-filename").value;
+    if (fileName === "")
+      fileName = "widget";
+
+    m3sCommon.closeModal();
+
+    const options = {
+      onlyVisible: true,
+      binary: true,
+    };
+
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    document.body.appendChild(link); // Firefox workaround, see #6594
+
+    function save(blob, filename) {
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+
+    function saveString(text, filename) {
+      save(new Blob([text], { type: 'text/plain' }), filename);
+    }
+
+    function saveArrayBuffer(buffer, filename) {
+      save(new Blob([buffer], { type: 'application/octet-stream' }), filename);
+    }
+
+    const gltfExporter = new THREE.GLTFExporter();
+    gltfExporter.parse(scene, function (result) {
+      if (result instanceof ArrayBuffer) {
+        saveArrayBuffer(result, fileName + '.glb');
+      } else {
+        var output = JSON.stringify(result, null, 2);
+        console.log(output);
+        saveString(output, fileName + '.gltf');
+      }
+    }, options);
+  };
 
   function run(mydir) {
     m3sCommon.insertHTML();
@@ -26,11 +72,13 @@
       const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-      const light = new THREE.HemisphereLight(0xffffbb, 0x888888, 1);
-      light.position.x = 100;
+      const light1 = new THREE.AmbientLight(0xffffff);
+      scene.add(light1);
+
+      light = new THREE.DirectionalLight(0xffffff, 0.5);
+      light.position.x = -100;
       light.position.y = 0;
       light.position.z = 100;
-      light.intensity = 1;
       scene.add(light);
 
       if (typeof THREE.GLTFLoader === "undefined") {
@@ -39,20 +87,31 @@
         const gltfLoader = new THREE.GLTFLoader();
         gltfLoader.load(mydir + "model/bend.glb", (gltf) => {
           material = new THREE.MeshStandardMaterial({ color: 'hsl(180,50%,50%)' });
+          material.roughness = 0.5;
+          material.metalness = 0.5;
           bar = gltf.scene.children[0];
           bar.visible = false;
           bar.material = material;
           scene.add(bar);
 
           setup();
-
         });
+      }
+
+      function addBar() {
+        var geometry = new THREE.BoxGeometry(3.35, .5, .5);
+        material = new THREE.MeshStandardMaterial({ color: 'hsl(180,50%,50%)' });
+        bar = new THREE.Mesh(geometry, material);
+          bar.visible = false;
+        scene.add(bar);
+        setup();
 
       }
 
-      let numBars = 30;
-      let step = 7;
       function setup() {
+        let numBars = 30;
+        let step = 7;
+
         for (let i = 0; i < numBars; i++) {
           const origin = new THREE.Object3D();
           scene.add(origin);
@@ -104,27 +163,91 @@
 
         controls = new THREE.OrbitControls(camera, canvas);
         controls.update();
-
       }
 
-      function addBar() {
-        var geometry = new THREE.BoxGeometry(3.35, .5, .5);
-        material = new THREE.MeshStandardMaterial({ color: 'hsl(180,50%,50%)' });
-        bar = new THREE.Mesh(geometry, material);
-        scene.add(bar);
-        setup();
+      const numberSlider = document.getElementById("number");
+      numberSlider.oninput = function () {
+        let n = numberSlider.value * 2;
+        let step = numberSlider.value;
+        let i = 0;
+        for (; i < origins.length; i++) {
+          origins[i].rotation.z = Math.ceil(i / 2) * (2 * Math.PI) / step;
+          origins[i].rotation.z += Math.PI / 2;
+        }
 
-      }
+        for (i = 0; i < n; i++) {
+          bars[i].visible = true;
+          origins[i].visible = true;
+          radius[i].visible = true;
+          spin[i].visible = true;
+          bars[i].visible = true;
+          flip[i].visible = true;
+          offset[i].visible = true;
+        }
+        for (; i < bars.length; i++) {
+          bars[i].visible = false;
+          origins[i].visible = false;
+          radius[i].visible = false;
+          spin[i].visible = false;
+          bars[i].visible = false;
+          flip[i].visible = false;
+          offset[i].visible = false;
+        }
+      };
+
+
+
+      const hueSlider = document.getElementById("hue");
+      hueSlider.oninput = function () {
+        let rgb = m3sCommon.hslToRgb(Number(hueSlider.value), 0.5, 0.5);
+        material.color.r = rgb[0];
+        material.color.g = rgb[1];
+        material.color.b = rgb[2];
+      };
+
+      const brightnessSlider = document.getElementById("brightness");
+      brightnessSlider.oninput = function () {
+        light.intensity = brightnessSlider.value;
+      };
+
+
+      const radiusSlider = document.getElementById("radius");
+      const flipSlider = document.getElementById("flip");
+      const spinSlider = document.getElementById("spin");
+      const offsetSlider = document.getElementById("offset");
+
+      offsetSlider.oninput = function () {
+        const n = offset.length;
+        for (let i = 0; i < n; i++) {
+          offset[i].position.x = offsetSlider.value;
+        }
+      };
+
+      radiusSlider.oninput = function () {
+        const n = radius.length;
+        for (let i = 0; i < n; i++) {
+          radius[i].position.x = -radiusSlider.value;
+        }
+      };
+
+      spinSlider.oninput = function () {
+        let i = 0;
+        for (; i < spin.length; i++) {
+          if (i % 2)
+            spin[i].rotation.z = .5 * spinSlider.value - Math.PI / 2;
+          else
+            spin[i].rotation.z = spinSlider.value;
+        }
+      };
+
+      flipSlider.oninput = function () {
+        for (let i = 0; i < flip.length; i++) {
+          flip[i].rotation.y = Number(flipSlider.value);
+        }
+      };
 
       var animate = function () {
         requestAnimationFrame(animate);
-
-        //bar.rotation.x += 0.01;
-        //bar.rotation.y += 0.01;
-
-        //if (typeof THREE.OrbitControls !== undefined) {
-        //  console.log("kgjkgkj");
-        //}
 
         renderer.render(scene, camera);
       };

@@ -144,7 +144,7 @@
         <input type="text" name="fileName" maxlength="512" id="m3s-wgl-filename" placeholder="widget"/></p>
       </div>
       <div class="modal-footer">
-        <button class="half-width" onclick="m3sWidgetBabylon.download()">Download</button>
+        <button class="half-width" onclick="m3sWidgetThree.download()">Download</button>
         &emsp;
         <button class="half-width" onclick="m3sCommon.closeModal()">Cancel</button>
       </div>

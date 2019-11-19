@@ -20,11 +20,14 @@
       { script: mydir + "m3s-widget-babylon.js", critical: true },
       { script: mydir + "m3s-widget-three.js", critical: true },
       { script: mydir + "m3s-common.js", condition: isCommonLoaded, critical: true },
+
       { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded, critical: true },
       { script: 'https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js', critical: false },
       { script: 'https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js', condition: isLoaderAvailable, critical: false },
+
       { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/build/three.js', condition: isThreeLoaded, critical: true },
       { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+      { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/exporters/GLTFExporter.js', critical: false },
       { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/controls/OrbitControls.js', condition: isOrbitControlAvailable },
     ],
     callback: () => { m3sWidgetThree.run(mydir); }
