@@ -140,10 +140,6 @@
         <h2>Download Model</h2>
       </div>
       <div class="modal-body">
-        <p>Note: The model will be downloaded as two files: <br />
-        <span id="fixed">&emsp;widget.gltf
-        <br />
-        &emsp;widget.bin</span></p>
         <p>Type the name you'd like for your model below:
         <input type="text" name="fileName" maxlength="512" id="m3s-wgl-filename" placeholder="widget"/></p>
       </div>
@@ -160,54 +156,3 @@
 
   return { hslToRgb, setRandom, closeModal, insertHTML, showDownloadDialog };
 })();
-
-
-//function Jim() {
-//  let a = 1;
-//  var b1 = 2;
-//  const c = 3;
-//  this.d = 4;
-
-//  this.getA = function () {
-//    return a;
-//  };
-
-//  this.addFunc = function (fnname, fn) {
-//    console.log(a);
-//    console.log(b1);
-//    console.log(c);
-//    console.log(this.d);
-//    this[fnname] = fn;
-//  };
-//}
-
-//jim = new Jim();
-
-//jim.addFunc("fred", function () {
-//  console.log(this.getA());
-//  console.log(b1);
-//  console.log(c);
-//  console.log(this.d);
-//});
-//jim.fred();
-
-
-//(function (namespace) {
-//  namespace.fn = function () {
-//    console.log(a);
-//    console.log(b);
-//    console.log(c);
-//  };
-//  namespace.fn();
-//})(m3sCommon);
-
-
-
-//(function (namespace) {
-//  var prive = "other private";
-//  namespace.newFunc = function () { return prive };
-//})(m3sCommon);
-
-//(function (namespace) {
-//  namespace.privqe = "other private";
-//})(m3sCommon);

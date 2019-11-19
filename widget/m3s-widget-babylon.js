@@ -21,7 +21,7 @@
       }
     };
 
-    BABYLON.GLTF2Export.GLTFAsync(scene, fileName, options).then((gltf) => {
+    BABYLON.GLTF2Export.GLBAsync(scene, fileName, options).then((gltf) => {
       gltf.downloadFiles();
     });
   };
@@ -44,6 +44,7 @@
     const createScene = function () {
       scene = new BABYLON.Scene(engine);
       scene.clearColor.a = 0;
+      scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
       const camera = new BABYLON.ArcRotateCamera('camera1', -Math.PI / 2, Math.PI / 2, 10, new BABYLON.Vector3(0, 0, 0), scene);
       camera.attachControl(canvas, false);
@@ -70,7 +71,6 @@
         addBar();
       }
 
-
       function addBar() {
         bar = BABYLON.MeshBuilder.CreateBox("box", { height: 3.35, width:.5, depth:.5 }, scene);
         bar.visibility = false;
@@ -83,9 +83,10 @@
         setup();
       }
 
-      let numBars = 30;
-      let step = 7;
       function setup() {
+        let numBars = 30;
+        let step = 7;
+
         for (let i = 0; i < numBars; i++) {
           const origin = new BABYLON.Mesh("origin", scene);
           origins.push(origin);
