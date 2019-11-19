@@ -1,5 +1,4 @@
-﻿
-CSS Grid
+﻿CSS Grid
 
 Button style
 	Allow style over-ride
@@ -8,4 +7,20 @@ Button style
 Three.js
 PlayCanvas
 
-Zoom step
+
+
+CDN sources for Three.js
+/* NOPE!!!
+{ script: 'https://raw.githubusercontent.com/mrdoob/three.js/gh-pages/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+{ script: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/examples/jsm/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+{ script: 'https://pagecdn.io/lib/three/106/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+*/
+
+/* YEP!!!
+{ script: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.min.js', condition: isThreeLoaded, critical: true },
+
+{ script: 'https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+{ script: 'https://threejs.org/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+*/
+
+cdn.rawgit is deprecated

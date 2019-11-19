@@ -7,21 +7,28 @@
   insertStyle(mydir + "css/modal.css");
 
   function isCommonLoaded() { return typeof m3sCommon !== "undefined"; }
+
   function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
   function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
-  // blocking
-  // continue and fix later
+  function isThreeLoaded() { return typeof THREE !== "undefined"; }
+  function isGLTFLoaderAvailable() { return typeof THREE.GLTFLoader !== "undefined"; }
+  function isOrbitControlAvailable() { return typeof THREE.OrbitControls !== "undefined"; }
 
   let dependencies = {
     scripts: [
       { script: mydir + "m3s-widget-babylon.js", critical: true },
+      { script: mydir + "m3s-widget-three.js", critical: true },
       { script: mydir + "m3s-common.js", condition: isCommonLoaded, critical: true },
       { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded, critical: true },
       { script: 'https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js', critical: false },
-      { script: 'https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js', condition: isLoaderAvailable, critical: false }
+      { script: 'https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js', condition: isLoaderAvailable, critical: false },
+      { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/build/three.js', condition: isThreeLoaded, critical: true },
+      { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
+      { script: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/controls/OrbitControls.js', condition: isOrbitControlAvailable },
     ],
-    callback: () => { m3sWidgetBabylon.run(mydir); }
+    callback: () => { m3sWidgetThree.run(mydir); }
+    //callback: () => { m3sWidgetBabylon.run(mydir); }
   };
 
   (function loadDependencies(dependencies) {
@@ -69,6 +76,8 @@
     var s = document.createElement('script');
     //console.log("Loading: ", script);
     //s.onload = () => { console.log("Loaded: ", s.src); };
+    s.crossOrigin = "anonymous";
+    //debugger;
     s.onerror = () => { console.error("Unable to load: ", s.src); };
     s.src = script;
     document.head.appendChild(s);
