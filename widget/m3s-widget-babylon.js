@@ -17,7 +17,6 @@
 
     const options = {
       shouldExportNode: function (node) {
-        //console.log(node.name, node.visibility);
         return node.visibility;
       }
     };
@@ -30,7 +29,7 @@
   function run(mydir) {
     m3sCommon.insertHTML();
     const canvas = document.getElementById("m3s-wgl-renderCanvas");
-    const engine = new BABYLON.Engine(canvas, true);
+
     const radius = [];
     const spin = [];
     const bars = [];
@@ -38,11 +37,20 @@
     const offset = [];
     const origins = [];
     let material;
-    let light1;
+    let light;
+
+    const engine = new BABYLON.Engine(canvas, true);
 
     const createScene = function () {
       scene = new BABYLON.Scene(engine);
       scene.clearColor.a = 0;
+
+      const camera = new BABYLON.ArcRotateCamera('camera1', -Math.PI / 2, Math.PI / 2, 10, new BABYLON.Vector3(0, 0, 0), scene);
+      camera.attachControl(canvas, false);
+      camera.wheelDeltaPercentage = 0.01;
+
+      light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-100, 0, -100), scene);
+      light.intensity = 1;
 
       if (BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb")) {
         BABYLON.SceneLoader.ImportMesh("", "", mydir + "model/bend.glb", scene, function (newMeshes) {
@@ -75,12 +83,6 @@
         setup();
       }
 
-      const camera = new BABYLON.ArcRotateCamera('camera1', -Math.PI / 2, Math.PI / 2, 10, new BABYLON.Vector3(0, 0, 0), scene);
-      camera.attachControl(canvas, false);
-
-      light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-100, 0, -100), scene);
-      light1.intensity = 1;
-
       let numBars = 30;
       let step = 7;
       function setup() {
@@ -102,7 +104,6 @@
 
           const bar1 = new BABYLON.Mesh("bar", scene);
           bar1.setParent(spin1);
-          //bars.push(bar1);
 
           const flip1 = new BABYLON.Mesh("flip", scene);
           flip1.setParent(bar1);
@@ -179,7 +180,7 @@
 
     const brightnessSlider = document.getElementById("brightness");
     brightnessSlider.oninput = function () {
-      light1.intensity = brightnessSlider.value;
+      light.intensity = brightnessSlider.value;
     };
 
 
