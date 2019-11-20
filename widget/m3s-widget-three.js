@@ -51,8 +51,7 @@
   };
 
   function run(mydir) {
-    m3sCommon.insertHTML();
-    const canvas = document.getElementById("m3s-wgl-renderCanvas");
+    const canvas = document.getElementById("m3s-wgl-canvas-three");
 
     const radius = [];
     const spin = [];
@@ -166,7 +165,7 @@
       }
 
       const numberSlider = document.getElementById("number");
-      numberSlider.oninput = function () {
+      numberSlider.addEventListener("input", function () {
         let n = numberSlider.value * 2;
         let step = numberSlider.value;
         let i = 0;
@@ -193,22 +192,22 @@
           flip[i].visible = false;
           offset[i].visible = false;
         }
-      };
+      });
 
 
 
       const hueSlider = document.getElementById("hue");
-      hueSlider.oninput = function () {
+      hueSlider.addEventListener("input", function () {
         let rgb = m3sCommon.hslToRgb(Number(hueSlider.value), 0.5, 0.5);
         material.color.r = rgb[0];
         material.color.g = rgb[1];
         material.color.b = rgb[2];
-      };
+      });
 
       const brightnessSlider = document.getElementById("brightness");
-      brightnessSlider.oninput = function () {
+      brightnessSlider.addEventListener("input", function () {
         light.intensity = brightnessSlider.value;
-      };
+      });
 
 
       const radiusSlider = document.getElementById("radius");
@@ -216,21 +215,21 @@
       const spinSlider = document.getElementById("spin");
       const offsetSlider = document.getElementById("offset");
 
-      offsetSlider.oninput = function () {
+      offsetSlider.addEventListener("input", function () {
         const n = offset.length;
         for (let i = 0; i < n; i++) {
           offset[i].position.x = offsetSlider.value;
         }
-      };
+      });
 
-      radiusSlider.oninput = function () {
+      radiusSlider.addEventListener("input", function () {
         const n = radius.length;
         for (let i = 0; i < n; i++) {
           radius[i].position.x = -radiusSlider.value;
         }
-      };
+      });
 
-      spinSlider.oninput = function () {
+      spinSlider.addEventListener("input", function () {
         let i = 0;
         for (; i < spin.length; i++) {
           if (i % 2)
@@ -238,13 +237,13 @@
           else
             spin[i].rotation.z = spinSlider.value;
         }
-      };
+      });
 
-      flipSlider.oninput = function () {
+      flipSlider.addEventListener("input", function () {
         for (let i = 0; i < flip.length; i++) {
           flip[i].rotation.y = Number(flipSlider.value);
         }
-      };
+      });
 
       var animate = function () {
         requestAnimationFrame(animate);

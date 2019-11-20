@@ -127,7 +127,9 @@
         </div>
 
         <div id="m3s-wgl-renderOutput">
-          <canvas id="m3s-wgl-renderCanvas" touch-action="none"></canvas>
+          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-three" touch-action="none"></canvas>
+          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-babylon" touch-action="none"></canvas>
+          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-playcanvas" touch-action="none"></canvas>
         </div>
 
   <!-- The Modal -->
@@ -144,7 +146,7 @@
         <input type="text" name="fileName" maxlength="512" id="m3s-wgl-filename" placeholder="widget"/></p>
       </div>
       <div class="modal-footer">
-        <button class="half-width" onclick="m3sWidgetThree.download()">Download</button>
+        <button class="half-width" onclick="m3sWidgetController.download()">Download</button>
         &emsp;
         <button class="half-width" onclick="m3sCommon.closeModal()">Cancel</button>
       </div>
