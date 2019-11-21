@@ -65,6 +65,7 @@
 
     const createScene = function () {
       scene = new THREE.Scene();
+
       const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
       camera.position.z = 7.35;
 
@@ -101,7 +102,7 @@
         var geometry = new THREE.BoxGeometry(3.35, .5, .5);
         material = new THREE.MeshStandardMaterial({ color: 'hsl(180,50%,50%)' });
         bar = new THREE.Mesh(geometry, material);
-          bar.visible = false;
+        bar.visible = false;
         scene.add(bar);
         setup();
 
@@ -250,6 +251,17 @@
 
         renderer.render(scene, camera);
       };
+
+      //window.addEventListener('resize', function () {
+      //  renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+      //  camera.aspect = canvas.parentElement.clientWidth / canvas.parentElement.clientHeight;
+      //  camera.updateProjectionMatrix();
+      //});
+      window.addEventListener('resize', function () {
+        renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+      });
 
       animate();
     };

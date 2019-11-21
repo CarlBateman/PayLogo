@@ -4,8 +4,6 @@
 
 Switch between engines
 
-CSS Grid
-
 Button style
 	Allow style over-ride
 	Needs options
@@ -15,6 +13,8 @@ PlayCanvas
 
 
 CDN sources for Three.js
+cdn.rawgit is deprecated
+
 /* NOPE!!!
 { script: 'https://raw.githubusercontent.com/mrdoob/three.js/gh-pages/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
 { script: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/examples/jsm/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
@@ -28,4 +28,3 @@ CDN sources for Three.js
 { script: 'https://threejs.org/examples/js/loaders/GLTFLoader.js', condition: isGLTFLoaderAvailable, critical: false },
 */
 
-cdn.rawgit is deprecated

@@ -74,63 +74,66 @@
     var section = document.createElement('div');
     section.setAttribute('id', "m3s-wgl-widget");
     section.innerHTML = `
-        <div class="m3s-wgl-ui-panel">
-          <div class="m3s-wgl-ui-header">
-            <p id="company_name">Myriad 3D Studio</p>
-            <p id="gizmo_name">WebGL Widget</p>
-          </div>
+  <div class="m3s-wgl-widget-container">
 
-          <div class="m3s-wgl-ui-mainbody">
-            <div class="m3s-wgl-ui-cell"></div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="radius">Radius</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="-2" max="4" step="0.01" value="0" class="m3s-slider" id="radius">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="flip">Flip</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="-3.14159" max="3.14159" step="0.0349" class="m3s-slider" id="flip">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="spin">Spin</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="-6.2832" max="6.2832" step="0.0349" value="0" class="m3s-slider" id="spin">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="offset">Offset</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="-1" max="3" step="0.01" value="2" class="m3s-slider" id="offset">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="hue">Colour</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="0" max="1" step="0.01" value=".5" class="m3s-slider-hue" id="hue">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="offset">Brightness</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="0" max="4" step="0.01" value="1" class="m3s-slider" id="brightness">
-            </div>
-            <div class="m3s-wgl-ui-cell">
-              <label class="m3s-wgl-ui-label" for="offset">Number</label>
-              <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
-              <input type="range" min="2" max="15" step="1" value="7" class="m3s-slider" id="number">
-            </div>
-            <div class="m3s-wgl-ui-cell"></div>
+    <!--div class="m3s-wgl-widget-panel"-->
 
-          </div>
+      <div class="m3s-wgl-widget-header">
+        <p id="company_name">Myriad 3D Studio</p>
+        <p id="gizmo_name">WebGL Widget</p>
+      </div>
 
-          <div class="m3s-wgl-ui-footer">
-            <button class="" onclick="m3sCommon.showDownloadDialog()">Download</button>
-          </div>
+      <div class="m3s-wgl-widget-menu">
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="radius">Radius</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="-2" max="4" step="0.01" value="0" class="m3s-slider" id="radius">
         </div>
-
-        <div id="m3s-wgl-renderOutput">
-          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-three" touch-action="none"></canvas>
-          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-babylon" touch-action="none"></canvas>
-          <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-playcanvas" touch-action="none"></canvas>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="flip">Flip</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="-3.14159" max="3.14159" step="0.0349" class="m3s-slider" id="flip">
         </div>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="spin">Spin</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="-6.2832" max="6.2832" step="0.0349" value="0" class="m3s-slider" id="spin">
+        </div>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="offset">Offset</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="-1" max="3" step="0.01" value="2" class="m3s-slider" id="offset">
+        </div>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="hue">Colour</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="0" max="1" step="0.01" value=".5" class="m3s-slider-hue" id="hue">
+        </div>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="offset">Brightness</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="0" max="4" step="0.01" value="1" class="m3s-slider" id="brightness">
+        </div>
+        <div class="m3s-wgl-ui-cell">
+          <label class="m3s-wgl-ui-label" for="offset">Number</label>
+          <button class="m3s-wgl-ui-button" onclick="m3sCommon.setRandom(this)">Randomise</button>
+          <input type="range" min="2" max="15" step="1" value="7" class="m3s-slider" id="number">
+        </div>
+      </div>
+
+      <div class="m3s-wgl-widget-footer">
+        <button class="" onclick="m3sCommon.showDownloadDialog()">Download</button>
+      </div>
+    <!--/div-->
+
+    <div class="m3s-wgl-widget-content">
+      <!--img class="m3s-wgl-logo" src="../widget/logos/babylonjs.gif" /-->
+
+      <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-three" touch-action="none"></canvas>
+      <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-babylon" touch-action="none"></canvas>
+      <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-playcanvas" touch-action="none"></canvas>
+    </div>
+  </div>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
