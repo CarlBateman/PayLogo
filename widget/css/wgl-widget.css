@@ -94,6 +94,20 @@
   outline:none;
 }
 
+.m3s-wgl-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 2px;
+  padding-right: 12px;
+  height: 50px;
+  /*display: none;*/
+  background: rgba(255, 255, 255, .75);
+  border-radius: 4px;
+}
+
 #m3s-wgl-renderOutput {
   margin-left: 24%;
   height: 100%

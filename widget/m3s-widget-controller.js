@@ -10,8 +10,9 @@
     m3sWidgetBabylon.run(mydir);
     m3sWidgetThree.run(mydir);
 
-    canvasThree.classList.add("hidden");
-    //canvasBabylon.classList.add("hidden");
+    //canvasThree.classList.add("hidden");
+    canvasBabylon.classList.add("hidden");
+    canvasPlaycanvas.classList.add("hidden");
   };
 
   const download = function () {
