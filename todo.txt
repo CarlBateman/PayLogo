@@ -1,6 +1,7 @@
 ﻿Bug
 	Three.js	???
 	Saving doesn't always work - not sure which options break
+	Pi * 2 = 360!!!
 
 Switch between engines
 
@@ -8,11 +9,13 @@ Button style
 	Allow style over-ride
 	Needs options
 
-PlayCanvas
 
+Engine select
+Demo page select (iframe)
 
 
 CDN sources for Three.js
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 cdn.rawgit is deprecated
 
 /* NOPE!!!

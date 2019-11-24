@@ -4,7 +4,7 @@
 
   const download = function () {
     if (typeof BABYLON.GLTF2Export === "undefined") {
-      alert("Sorry, the download component can't be found.\nUnable to donwload!");
+      alert("Sorry, the download component can't be found.\nUnable to download!");
       return;
     }
     const modal = document.getElementById("myModal");
@@ -119,7 +119,7 @@
           if (i % 2) {
             offset1.rotation.z = Math.PI;
             origin.position.z = -.5;
-            spin1.rotation.z = - Math.PI / 2;
+            spin1.rotation.z = -Math.PI / 2;
           }
 
           const box = bar.clone();
@@ -202,7 +202,7 @@
     });
 
     spinSlider.addEventListener("input", function () {
-      let i = 0;
+      let i = 0; // here here here
       for (; i < spin.length; i++) {
         if (i % 2)
           spin[i].rotation.z = .5 * spinSlider.value - Math.PI / 2;

@@ -8,6 +8,9 @@
 
   function isCommonLoaded() { return typeof m3sCommon !== "undefined"; }
 
+  function isPlayCanvasLoaded() { return typeof pc !== "undefined"; }
+  function isPlayCanvasLoaderAvailable() { return typeof loadGlb !== "undefined"; }
+
   function isBabylonLoaded() { return typeof BABYLON !== "undefined"; }
   function isLoaderAvailable() { return BABYLON.SceneLoader.IsPluginForExtensionAvailable(".glb"); }
 
@@ -17,10 +20,14 @@
 
   let dependencies = {
     scripts: [
+      { script: mydir + "m3s-widget-playcanvas.js", critical: true },
       { script: mydir + "m3s-widget-babylon.js", critical: true },
       { script: mydir + "m3s-widget-three.js", critical: true },
       { script: mydir + "m3s-common.js", condition: isCommonLoaded, critical: true },
       { script: mydir + "m3s-widget-controller.js", critical: true },
+
+      { script: 'https://code.playcanvas.com/playcanvas-stable.js', condition: isPlayCanvasLoaded, critical: true },
+      { script: mydir + 'libs/playcanvas-gltf.js', condition: isPlayCanvasLoaderAvailable, critical: true },
 
       { script: 'https://cdn.babylonjs.com/babylon.max.js', condition: isBabylonLoaded, critical: true },
       { script: 'https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js', critical: false },
