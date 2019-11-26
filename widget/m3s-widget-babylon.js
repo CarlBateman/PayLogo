@@ -114,8 +114,6 @@
 
           offset1.position.x = 2;
 
-          radius1.position.x = 0;
-
           if (i % 2) {
             offset1.rotation.z = Math.PI;
             origin.position.z = -.5;
