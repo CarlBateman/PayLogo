@@ -155,12 +155,10 @@
           flip.push(flip1);
 
           let r = Math.ceil(i / 2) * (360) / step;
-          r += 45 / 2;
+          r += 90;
           origin.setLocalEulerAngles(0, 0, r);
 
           offset1.setLocalPosition(2, 0, 0);
-
-          //radius1.position.x = 0;
 
           if (i % 2) {
             offset1.setLocalEulerAngles(0, 0, -180);
@@ -171,7 +169,13 @@
           const box = bar.clone();
           box.name = "box" + i;
           flip1.addChild(box);
-          bar1.setLocalEulerAngles(0, -2 * 180 / 3, -180 / 8);
+
+          var q1 = new pc.Quat();
+          var q2 = new pc.Quat();
+          q1.setFromEulerAngles(0, 0, -180 / 8);
+          q2.setFromEulerAngles(0, -2 * 180 / 3, 0);
+          q2.mul(q1);
+          bar1.setLocalRotation(q2);
 
           if (i < step * 2)
             box.enabled = true;

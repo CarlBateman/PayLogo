@@ -141,8 +141,6 @@
 
           offset1.position.x = 2;
 
-          radius1.position.x = 0;
-
           if (i % 2) {
             offset1.rotation.z = -Math.PI;
             origin.position.z = .5;
@@ -152,8 +150,8 @@
           const box = bar.clone();
           box.name = "box" + i;
           flip1.add(box);
-          bar1.rotation.z = -Math.PI / 8;
           bar1.rotation.y = -2*Math.PI / 3;
+          bar1.rotation.z = -Math.PI / 8;
 
           if (i < step * 2)
             box.visible = true;
