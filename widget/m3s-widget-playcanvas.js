@@ -3,6 +3,7 @@
   let bar;
 
   const download = function () {
+      alert("Sorry, PlayCanvas doesn't support download.\nUnable to download!");
   };
 
   function toDeg(radians) {

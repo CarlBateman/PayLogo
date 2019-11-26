@@ -127,11 +127,27 @@
     <!--/div-->
 
     <div class="m3s-wgl-widget-content">
-      <!--img class="m3s-wgl-logo" src="../widget/logos/babylonjs.gif" /-->
 
       <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-three" touch-action="none"></canvas>
       <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-babylon" touch-action="none"></canvas>
       <canvas class="m3s-wgl-canvas" id="m3s-wgl-canvas-playcanvas" touch-action="none"></canvas>
+
+      <div class="m3s-wgl-logo">
+        <img id="engine-gif" class="m3s-wgl-logo-img" src="../widget/logos/threejs.gif" />
+        <div id="m3s-wgl-logo-panel" class="m3s-wgl-logo-content">
+          <div id="babylonjs-gif" class="m3s-wgl-logo-content-item">
+            <img class="m3s-wgl-logo-img" src="../widget/logos/babylonjs.gif"><br/>
+          </div>
+          <div id="playcanvas-gif" class="m3s-wgl-logo-content-item">
+            <img class="m3s-wgl-logo-img" src="../widget/logos/playcanvas.gif"><br/>
+          </div>
+          <div id="threejs-gif" class="m3s-wgl-logo-content-item">
+            <img class="m3s-wgl-logo-img" src="../widget/logos/threejs.gif">
+          </div>
+ 
+        </div>
+      </div>
+
     </div>
   </div>
 
