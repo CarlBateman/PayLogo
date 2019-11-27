@@ -23,25 +23,22 @@
     let light;
 
     const createScene = function () {
-      // create a PlayCanvas application
       var canvas = document.getElementById('m3s-wgl-canvas-playcanvas');
       var app = new pc.Application(canvas, {
         mouse: new pc.Mouse(canvas),
       });
       app.start();
 
-      // fill the available space at full resolution
       app.setCanvasFillMode(pc.FILLMODE_NONE);
       app.setCanvasResolution(pc.RESOLUTION_AUTO);
+      app.scene.ambientLight = new pc.Color(1,1,1);
 
-      // ensure canvas is resized when window changes size
       window.addEventListener('resize', function () {
         app.resizeCanvas();
       });
 
 
 
-      // create camera entity
       var camera = new pc.Entity('camera');
       camera.addComponent('camera', {
         clearColor: new pc.Color(0.1, 0.1, 0.1, 0.0)
@@ -78,6 +75,7 @@
           });
 
           material = new pc.StandardMaterial();
+          material.specular.set(.5, .5, .5);
           material.diffuse.set(rgb[0], rgb[1], rgb[2]);
           gltf.model.model.meshInstances[0].material = material;
 
@@ -89,27 +87,21 @@
         });
       });
 
-      // create directional light entity
       light = new pc.Entity('light');
       light.addComponent('light');
 
       // add to hierarchy
-      //app.root.addChild(cube);
       app.root.addChild(light);
+      light.setEulerAngles(135, 0, -90);
 
-      // set up initial positions and orientations
-      camera.setPosition(0, 0, 3);
-      light.setEulerAngles(45, 0, 0);
 
-      // register a global update event
-      //app.on('update', function (deltaTime) {
-      //  cube.rotate(10 * deltaTime, 20 * deltaTime, 30 * deltaTime);
-      //});
+
 
       function addBar() {
         let rgb = m3sCommon.hslToRgb(0.5, 0.5, 0.5);
         var material = new pc.StandardMaterial();
         material.diffuse.set(rgb[0], rgb[1], rgb[2]);
+        material.specular.set(1, 1, 1);
         material.update();
 
         // create box entity
@@ -118,12 +110,12 @@
           type: 'box'
         });
         bar.setLocalScale(0.5, 3.5, 0.5);
-        //bar.enabled = false;
+        bar.enabled = false;
         bar.model.material = material;
         bar.model.material.update();
 
         app.root.addChild(bar);
-        //setup();
+        setup();
       }
 
       function setup() {
