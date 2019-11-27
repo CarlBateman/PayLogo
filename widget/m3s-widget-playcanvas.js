@@ -44,11 +44,11 @@
         clearColor: new pc.Color(0.1, 0.1, 0.1, 0.0)
       });
 
-      app.assets.loadFromUrl('libs/mouse-input.js', 'script', function (err, asset) {
+      app.assets.loadFromUrl(mydir + 'libs/mouse-input.js', 'script', function (err, asset) {
         camera.addComponent('script');
         camera.script.create('mouseInput');
 
-        app.assets.loadFromUrl('libs/orbit-camera.js', 'script', function (err, asset) {
+        app.assets.loadFromUrl(mydir + 'libs/orbit-camera.js', 'script', function (err, asset) {
           camera.script.create('orbitCamera');
           camera.script.orbitCamera.frameOnStart = false;
           camera.setLocalPosition(0, 0, 10);
