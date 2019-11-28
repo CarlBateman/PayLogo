@@ -74,6 +74,26 @@
     var section = document.createElement('div');
     section.setAttribute('id', "m3s-wgl-widget");
     section.innerHTML = `
+  <!-- The Spiel -->
+<div class="m3s-spiel">
+<br /><p class="m3s-spiel-h2">A demo WebGL Widget from <strong>Myriad 3D Studio</strong></p>
+<p><strong>By Carl Bateman</strong> (<a href="http://carlbateman.com">CarlBateman.com</a>). Have fun!</p>
+<p>This is a simple WebGL Widget based on some freelance work that failed to materialise, so here it is as a portfolio piece.<br />
+It should be easy to add to any page, just include <br />
+<code>&emsp;&emsp;&lt;script id="m3s-wgl-widget" src="m3s-widget-setup.js"&gt;&lt;/script&gt;</code><br />
+and<br />
+<code>&emsp;&emsp;&lt;div id="LogoGenerator"&gt; &lt;/div&gt;</code><br />
+where you want the widget to appear.</p>
+
+<p>I've implemented the widget in Three.js, Babylon.js and PlayCanvas engine. The widget defaults to Three.js but a different engine can be selected by clicking the icon in the top left.</p>
+<p>I've tried to get the same look across engines, but not too hard as each works slightly differently and I wanted to have some indication of the differences in the final render.</p>
+
+<br /><p class="m3s-spiel-h2">Some technical stuff</p>
+<p>Code is pulled in by creating a script and setting its <code>src</code> property. I experimented with XHR and promises; XHR hides the source file names, promises felt a bit clunky,</p>
+<p><code>setTimeout</code> is used to check whether the code has loaded. I tried using <code>onload</code>, but felt the delay before an error occurred was a too long.</p>
+<p>Different web pages can be selected to get an idea of how the widget might look in different settings. I originally did this for debugging purposes.</p><br />
+</div>
+
   <div class="m3s-wgl-widget-container">
 
     <!--div class="m3s-wgl-widget-panel"-->
@@ -150,26 +170,6 @@
 
     </div>
   </div>
-
-  <!-- The Spiel -->
-<div>
-<h2>A demo WebGL Widget from <strong>Myriad 3D Studio</strong></h2>
-<p><strong>By Carl Bateman</strong> (<a href="http://carlbateman.com">CarlBateman.com</a>). Have fun!</p>
-<p>This is a simple WebGL Widget based on some freelance work that failed to materialise, so here it is as a portfolio piece.<br />
-It should be easy to add to any page, just include <br />
-<code class="m3s-wgl-code">&emsp;&emsp;&lt;script id="m3s-wgl-widget" src="m3s-widget-setup.js"&gt;&lt;/script&gt;</code><br />
-and<br />
-<code class="m3s-wgl-code">&emsp;&emsp;&lt;div id="LogoGenerator"&gt; &lt;/div&gt;</code><br />
-where you want the widget to appear.</p>
-
-<p>I've implemented the widget in Three.js, Babylon.js and PlayCanvas engine. The widget defaults to Three.js but a different engine can be selected by clicking the icon in the top left.</p>
-<p>I've tried to get the same look across engines, but not too hard as each works slightly differently and I wanted to have some indication of the differences in the final render.</p>
-
-<h2>Some technical stuff</h2>
-<p>Code is pulled in by creating a script and setting its <code class="m3s-wgl-code">src</code> property. I experimented with XHR and promises; XHR hides the source file names, promises felt a bit clunky,</p>
-<p><code class="m3s-wgl-code">setTimeout</code> is used to check whether the code has loaded. I tried using <code class="m3s-wgl-code">onload</code>, but felt the delay before an error occurred was a too long.</p>
-<p>Different web pages can be selected to get an idea of how the widget might look in different settings. I originally did this for debugging purposes.</p>
-</div>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">

@@ -1,4 +1,46 @@
-﻿.m3s-wgl-logo-img {
+﻿#centremiddle {
+  padding: 10px;
+  position: relative;
+  margin: 0 auto;
+  clear: left;
+  z-index: 0;
+  text-align: center;
+  width: 50%;
+  height: 75%;
+  top: 5%
+}
+
+.outline {
+  border: 1px solid #fff;
+  border-color: green;
+}
+
+#LogoGenerator {
+  /*text-align: left;*/
+  /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+.m3s-spiel {
+  text-align:justify;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height:1.5em;
+  font-size:initial;
+}
+
+.m3s-spiel p {
+  margin: 0 0 0.5em 0;
+}
+
+.m3s-spiel-h2 {
+  font-size: 2em;
+  margin: 0 0 0.1em 0;
+}
+
+.m3s-spiel code {
+  font-family: Consolas,"courier new";
+}
+
+.m3s-wgl-logo-img {
   height: 40px;
 }
 
@@ -35,35 +77,11 @@
   }
 
 
-#centremiddle {
-  padding: 10px;
-  position: relative;
-  margin: 0 auto;
-  clear: left;
-  z-index: 0;
-  text-align: center;
-  width: 50%;
-  height: 75%;
-  top: 5%
-}
-
-.outline {
-  border: 1px solid #fff;
-  border-color: green;
-}
-
-#LogoGenerator {
-  /*text-align: left;*/
-  /*font-family: Arial, Helvetica, sans-serif;*/
-}
-
-.m3s-wgl-code {
-  font-family: Consolas,"courier new";
-}
-
 .m3s-wgl-widget-container {
+  border: 4px solid #eeeeff;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
   height: 75vh;
-  /*height: 100%;*/
   display: grid;
   grid-gap: 3px;
   grid-template-columns: 25% 1fr;
@@ -72,6 +90,7 @@
 }
 
 .m3s-wgl-widget-content {
+  border-left: 4px solid #eeeeff;
   position: relative;
   top: 0;
   left: 0;

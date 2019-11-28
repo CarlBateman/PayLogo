@@ -41,7 +41,7 @@
 
       var camera = new pc.Entity('camera');
       camera.addComponent('camera', {
-        clearColor: new pc.Color(0.1, 0.1, 0.1, 0.0)
+        clearColor: new pc.Color(0.99, 0.99, 0.99, 1.0)
       });
 
       app.assets.loadFromUrl(mydir + 'libs/mouse-input.js', 'script', function (err, asset) {

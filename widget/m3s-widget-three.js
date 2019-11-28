@@ -65,11 +65,12 @@
 
     const createScene = function () {
       scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfefefe);
 
       const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
       camera.position.z = 7.35;
 
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
       const light1 = new THREE.AmbientLight(0xffffff);
