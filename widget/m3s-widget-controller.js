@@ -10,7 +10,8 @@
   const btnPlaycanvas = document.getElementById("playcanvas-gif");
 
   const enginegif = document.getElementById("engine-gif");
-  const logoContent = document.getElementById("m3s-wgl-logo-panel");
+  const playcanvasInfo = document.getElementById("playcanvas-info");
+  const downloadBtn = document.getElementById("download-btn");
 
   let widget = m3sWidgetBabylon;
 
@@ -22,8 +23,12 @@
     canvasPlaycanvas.classList.add("hidden");
 
     enginegif.src = "../widget/logos/threejs.gif";
-    //logoContent.style.display = "none";
     canvasThree.focus();
+
+    playcanvasInfo.classList.remove("hidden");
+    playcanvasInfo.classList.add("hidden");
+
+    downloadBtn.classList.remove("hidden");
   });
 
   btnBabylon.addEventListener("click", function () {
@@ -34,8 +39,12 @@
     canvasPlaycanvas.classList.add("hidden");
 
     enginegif.src = "../widget/logos/babylonjs.gif";
-    //logoContent.style.display = "none";
     canvasBabylon.focus();
+
+    playcanvasInfo.classList.remove("hidden");
+    playcanvasInfo.classList.add("hidden");
+
+    downloadBtn.classList.remove("hidden");
   });
 
   btnPlaycanvas.addEventListener("click", function () {
@@ -46,8 +55,12 @@
     canvasPlaycanvas.classList.remove("hidden");
 
     enginegif.src = "../widget/logos/playcanvas.gif";
-    //logoContent.style.display = "none";
     canvasPlaycanvas.focus();
+
+    playcanvasInfo.classList.remove("hidden");
+
+    downloadBtn.classList.remove("hidden");
+    downloadBtn.classList.add("hidden");
   });
 
 

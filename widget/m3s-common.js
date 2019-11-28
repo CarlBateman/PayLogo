@@ -142,7 +142,8 @@ where you want the widget to appear.</p>
       </div>
 
       <div class="m3s-wgl-widget-footer">
-        <button class="" onclick="m3sCommon.showDownloadDialog()">Download</button>
+        <span class="hidden" id="playcanvas-info"> Note: At the time of development PlayCanvas doesn't support download.</span>
+        <button class="" id="download-btn" onclick="m3sCommon.showDownloadDialog()">Download</button>
       </div>
     <!--/div-->
 

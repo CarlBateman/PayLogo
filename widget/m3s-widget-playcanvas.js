@@ -31,7 +31,7 @@
 
       app.setCanvasFillMode(pc.FILLMODE_NONE);
       app.setCanvasResolution(pc.RESOLUTION_AUTO);
-      app.scene.ambientLight = new pc.Color(1,1,1);
+      app.scene.ambientLight = new pc.Color(.7,.7,.7);
 
       window.addEventListener('resize', function () {
         app.resizeCanvas();
