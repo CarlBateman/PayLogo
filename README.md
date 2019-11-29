@@ -12,6 +12,6 @@
 
 [Here](https://carlbateman.github.io/WebGL-widget-logo/site-striped/#LogoGenerator)
 
-[Here](https://carlbateman.github.io/WebGL-widget-logo/site-space/#LogoGenerator)
-
 [Here](https://carlbateman.github.io/WebGL-widget-logo/site-directive/#LogoGenerator)
+
+[Here](https://carlbateman.github.io/WebGL-widget-logo/site-space/#LogoGenerator) (Note: page renders in a funny order you may need to scroll up to see the widget.)
