@@ -154,7 +154,7 @@
 
   <!-- The Spiel -->
 <div class="m3s-spiel">
-<a name="m3s-wgl-bookmark"></a>
+<a name="m3s-wgl-bookmark" id="m3s-wgl-bookmark"></a>
 <br /><p class="m3s-spiel-h2">A demo WebGL Widget from <strong>Myriad 3D Studio</strong></p>
 <p><strong>By Carl Bateman</strong> (<a href="http://carlbateman.com">CarlBateman.com</a>). Have fun!</p>
   <span id="m3s-spiel-info" class="hidden">
