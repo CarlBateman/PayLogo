@@ -310,5 +310,8 @@
   font-size: 0.8em;
   /*font-weight: bold;*/
   color: rgba(255,0,0,0.8);
-  ;
+}
+
+#m3s-spiel-less, #m3s-spiel-more {
+  cursor: pointer;
 }

@@ -1,15 +1,12 @@
-﻿Bug
-	Three.js	???
-	Saving doesn't always work - not sure which options break
+﻿To do
+	Transitions might be nice
 
+	Tidy CSS!
 
-
-Tidy CSS!
-
-Button should be styled in CSS for standalone
-Button style
-	Allow style over-ride
-	Needs options
+	Button should be styled in CSS for standalone
+	Button style-
+		Allow style over-ride
+		Needs options
 
 
 Demo page select (iframe)
@@ -17,6 +14,10 @@ Demo page select (iframe)
 
 
 
+
+Bug
+	Three.js	???
+	Saving doesn't always work - not sure which options break
 
 
 
