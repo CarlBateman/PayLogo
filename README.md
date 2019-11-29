@@ -6,10 +6,10 @@
 
 ## Embedded demos
 
-[Here](https://carlbateman.github.io/WebGL-widget-logo/site-twenty/#m3s-wgl-bookmark)
+[Here](https://carlbateman.github.io/WebGL-widget-logo/site-twenty/#LogoGenerator)
 
-[Here](https://carlbateman.github.io/WebGL-widget-logo/site-striped/#m3s-wgl-bookmark)
+[Here](https://carlbateman.github.io/WebGL-widget-logo/site-striped/#LogoGenerator)
 
-[Here](https://carlbateman.github.io/WebGL-widget-logo/site-space/#m3s-wgl-bookmark)
+[Here](https://carlbateman.github.io/WebGL-widget-logo/site-space/#LogoGenerator)
 
-[Here](https://carlbateman.github.io/WebGL-widget-logo/site-directive/#m3s-wgl-bookmark)
+[Here](https://carlbateman.github.io/WebGL-widget-logo/site-directive/#LogoGenerator)
