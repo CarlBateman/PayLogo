@@ -145,10 +145,8 @@
           <div id="threejs-gif" class="m3s-wgl-logo-content-item">
             <img class="m3s-wgl-logo-img" src="../widget/logos/threejs.gif">
           </div>
- 
         </div>
       </div>
-
     </div>
   </div>
 
